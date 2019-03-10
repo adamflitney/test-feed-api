@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
-const userFeedController = require('./userfeed/userFeedController');
+const userFeedController = require('./user-feed/userFeedController');
 
 const app = express();
 
