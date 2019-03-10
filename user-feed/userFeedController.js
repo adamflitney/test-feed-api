@@ -12,6 +12,7 @@ const getUserFeed = (req, res) => {
 const aggregateFeedData = (feedData) => {
     if (feedData.length > 0) {
         let likes = feedData.filter(feedItem => feedItem.type && feedItem.type.toLowerCase() === "like");
+        console.log(likes);
         let comments = feedData.filter(feedItem => feedItem.type && feedItem.type.toLowerCase() === "comment");
         let likesByPost = Object.values(groupByPost(likes));
         let commentsByPost = Object.values(groupByPost(comments));
@@ -30,7 +31,7 @@ const aggregateFeedData = (feedData) => {
 
 const groupByPost = (objectArray) => {
     return objectArray.reduce((acc, obj) => {
-        var key = obj.post.id;
+        let key = obj.post.id;
         // Add post title before array and remove
         // redundant post objects from each array item
         if (!acc[key]) {
@@ -39,7 +40,9 @@ const groupByPost = (objectArray) => {
                 items: []
             };
         }
-        cleanedObj = obj;
+        // If you don't do something here to clone the object properly,
+        // it will break after the first request.
+        cleanedObj = JSON.parse(JSON.stringify(obj));
         delete cleanedObj.post;
         delete cleanedObj.type;
         acc[key].items.push(cleanedObj);
