@@ -10,3 +10,6 @@ Written in NodeJS. The API exposes a single REST endpoint: GET '/userfeed' that 
 * Set `PORT` environment variable (defaults to 3001).
 * Run `node server.js` in the root directory of the project (or use whatever tool you run node programs with).
 
+## Testing
+To run the tests for the project, run `npm run test`.
+
