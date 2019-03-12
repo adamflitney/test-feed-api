@@ -12,7 +12,6 @@ const getUserFeed = (req, res) => {
 const aggregateFeedData = (feedData) => {
     if (feedData.length > 0) {
         let likes = feedData.filter(feedItem => feedItem.type && feedItem.type.toLowerCase() === "like");
-        console.log(likes);
         let comments = feedData.filter(feedItem => feedItem.type && feedItem.type.toLowerCase() === "comment");
         let likesByPost = Object.values(groupByPost(likes));
         let commentsByPost = Object.values(groupByPost(comments));
