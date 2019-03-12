@@ -36,6 +36,7 @@ const groupByPost = (objectArray) => {
         // redundant post objects from each array item
         if (!acc[key]) {
             acc[key] = {
+                id: key,
                 title: obj.post.title,
                 items: []
             };
